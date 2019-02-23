@@ -135,22 +135,23 @@ Mustache 语法不能作用在 HTML 特性上，遇到这种情况应该使用 [
 从 2.6.0 开始，可以用方括号括起来的 JavaScript 表达式作为一个指令的参数：
 
 ``` html
-<a v-bind:[attributeName]="url"> ... </a>
+<a v-bind:[attributename]="url"> ... </a>
 ```
 
-这里的 `attributeName` 会被作为一个 JavaScript 表达式进行动态求值，求得的值将会作为最终的参数来使用。例如，如果你的 Vue 实例有一个 `data` 属性 `attributeName`，其值为 `"href"`，那么这个绑定将等价于 `v-bind:href`。
+这里的 `attributename` 会被作为一个 JavaScript 表达式进行动态求值，求得的值将会作为最终的参数来使用。例如，如果你的 Vue 实例有一个 `data` 属性 `attributename`，其值为 `"href"`，那么这个绑定将等价于 `v-bind:href`。
 
 同样地，你可以使用动态参数为一个动态的事件名绑定处理函数：
 
 ``` html
-<a v-on:[eventName]="doSomething"> ... </a>
+<a v-on:[eventname]="doSomething"> ... </a>
 ```
 
-同样地，当 `eventName` 的值为 `"focus"` 时，`v-on:[eventName]` 将等价于 `v-on:focus`。
+同样地，当 `eventname` 的值为 `"focus"` 时，`v-on:[eventname]` 将等价于 `v-on:focus`。
 
 #### 对动态参数的值的约束
 
-动态参数预期会求出一个字符串，异常情况下值为 `null`。这个特殊的 `null` 值可以被显性地用于移除绑定。任何其它非字符串类型的值都将会触发一个警告。
+- 动态参数预期会求出一个字符串，异常情况下值为 `null`。这个特殊的 `null` 值可以被显性地用于移除绑定。任何其它非字符串类型的值都将会触发一个警告。
+- 动态参数的名称必须是全小写的，否则会提示'Property or method "eventname" is not defined on the instance but referenced during render'
 
 #### 对动态参数表达式的约束
 
